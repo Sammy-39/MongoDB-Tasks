@@ -1,0 +1,16 @@
+[
+    {
+        "username" : "GoodGuyGreg",
+        "full_name" : {
+            "first" : "Good Guy",
+            "last" : "Greg"
+        }
+    },
+    {
+        "username" : "ScumbagSteve",
+        "full_name" : {
+            "first" : "Scumbag",
+            "last" : "Steve"
+        }
+    }
+]
