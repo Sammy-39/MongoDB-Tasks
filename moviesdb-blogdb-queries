@@ -48,7 +48,6 @@ title : Pee Wee Herman's Big Adventure
 
 title : Avatar
 
-
 Solution:
 db.movies.insert([
      {
