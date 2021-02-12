@@ -1,0 +1,19 @@
+Find all the information about each film -> db.Movies.find().pretty()
+Find the title of each film -> db.Movies.find({},{"title":1, "_id":0}).pretty()
+Find the director of each film -> db.Movies.find({},{"director":1, "_id":0}).pretty()
+Find the title and director of each film -> db.Movies.find({},{"title":1,"director":1, "_id":0}).pretty()
+Find the title and year of each film -> db.Movies.find({},{"title":1,"year":1, "_id":0}).pretty()
+
+Find the movie with a row id of 6 -> db.Movies.find({"id":6}).pretty()
+Find the movies released in the years between 2000 and 2010 -> db.Movies.find({"year": {$gte: 2000, $lte:2010}}).pretty()
+Find the movies not released in the years between 2000 and 2010 -> db.Movies.find({"year": {$not: {$gte: 2000, $lte:2010}}}).pretty()
+Find the first 5 Pixar movies and their release year -> db.Movies.find({},{"_id":0, "title":1, "year":1}).sort({"year":1}).limit(5)
+
+Find all the Toy Story movies -> db.Movies.find({"title": /^Toy Story/})
+Find all the movies directed by John Lasseter -> db.Movies.find({"director":"John Lasseter"},{"_id":0, "title":1, "director":1})
+Find all the movies (and director) not directed by John Lasseter -> db.Movies.find({"director":{$ne: "John Lasseter"}},{"_id":0, "title":1, "director":1})
+Find all the WALL-* movies -> db.Movies.find({"title": /^WALL-/})
+
+List the last four Pixar movies released (ordered from most recent to least) -> db.Movies.find({},{"_id":0, "title":1, "year":1}).sort({"year":-1}).limit(4)
+List the first five Pixar movies sorted alphabetically -> db.Movies.aggregate([{"$project": {"title":1, "year":1, "_id":0}},{"$sort": {"year":1}},{"$limit": 5},{"$sort":{"title":1}}]).pretty()
+List the next five Pixar movies sorted alphabetically -> db.Movies.aggregate([{"$project": {"title":1, "year":1, "_id":0}},{"$sort": {"year":1}},{"$skip":5},{"$limit":5},{"$sort":{"title":1}}]).pretty()
